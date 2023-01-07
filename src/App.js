@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Forms from './components/Forms'
-import Results from './components/Results'
 
 function App() {
 
@@ -15,7 +14,6 @@ function App() {
   return (
     <>
       <Forms inputs={state} setInputs={setState} />
-      <Results data={state}/>
     </>
   );
 }
