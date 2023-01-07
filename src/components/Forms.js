@@ -18,28 +18,28 @@ const Forms = (props) => {
         <input onChange={onChange} type="text" name="firstName" />
       </div>
       
-      <p>{inputs.firstName.length < 2 ? 'Debe tener mas de dos caracteres' : ''}</p>
+      {inputs.firstName.length === 0 ? '' : message(inputs,1)}
 
       <div className="inputCard">
         <label htmlFor="lastName">Last Name</label>
         <input onChange={onChange} type="text" name="lastName" />
       </div>
 
-      <p>{inputs.lastName.length < 2 ? 'Debe contener mas de 5 caracteres' : ''}</p>
+      {inputs.lastName.length === 0 ? '' : message(inputs,2)}
 
       <div className="inputCard">
         <label htmlFor="email">Email</label>
         <input onChange={onChange} type="email" name="email" />
       </div>
 
-      <p>{inputs.email.length < 5 ? 'El correo debe contener al menos 5 caracteres' : ''}</p>
+      {inputs.email.length === 0 ? '' : message(inputs,3)}
 
       <div className="inputCard">
         <label htmlFor="password">Password</label>
         <input onChange={onChange} type="password" name="password" />
       </div>
 
-      <p>{inputs.password.length < 8 ? 'La contraseña debe contener al menos 8 caracteres' : ''}</p>
+      {inputs.password.length === 0 ? '' : message(inputs,4)}
 
       <div className="inputCard">
         <label htmlFor="confirmPassword">Confirm password</label>
@@ -47,9 +47,27 @@ const Forms = (props) => {
       </div>
 
 
-      <p>{inputs.password === inputs.confirmPassword ? '' : 'Deben concidir las contraseñas'}</p>
+      {inputs.confirmPassword.length === 0 ? '' : message(inputs,5)}
     </form>
   );
 };
 
 export default Forms;
+
+const message = (dat,num) => {
+  if (num === 1) {
+    return <p>{dat.firstName.length < 2 ? 'Debe tener mas de dos caracteres' : ''}</p>
+  }
+  else if (num ===2) {
+    return <p>{dat.lastName.length < 2 ? 'Debe tener mas de dos caracteres' : ''}</p>
+  }
+  else if (num === 3) {
+    return <p>{dat.email.length < 5 ? 'El correo debe contener al menos 5 caracteres' : ''}</p>
+  }
+  else if (num === 4) {
+    return <p>{dat.password.length < 8 ? 'La contraseña debe contener al menos 8 caracteres' : ''}</p>
+  }
+  else if (num === 5) {
+    return <p>{dat.confirmPassword === dat.password ? '' : 'Las contraseñas no coinciden'}</p>
+  }
+}
